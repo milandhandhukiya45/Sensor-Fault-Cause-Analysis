@@ -26,8 +26,9 @@ aps-fault-analysis/
 
 ```
 
-How to Run
-1. Clone this repo
+How to Run the GUI App 
+
+1. Clone this repository
 ```bash
 git clone https://github.com/milandhandhukiya45/Sensor-Fault-Cause-Analysis.git
 cd Sensor-Fault-Cause-Analysis
@@ -36,12 +37,20 @@ cd Sensor-Fault-Cause-Analysis
 2. Install dependencies
 ```bash
 pip install -r requirements.txt
+(if needed then manually install packages : pip install pandas scikit-learn matplotlib seaborn )
 ```
 
 3. Run the GUI app
 ```bash
 python src/gui_app.py
 ```
+
+4. Use the App
+The GUI window will open.
+Click on “Select CSV and Predict”
+Upload a .csv file with sensor data.
+Make sure the file contains a class column labeled with 'pos' and 'neg' values.
+
 
 Sample Output
 - Total Anomalies Detected
