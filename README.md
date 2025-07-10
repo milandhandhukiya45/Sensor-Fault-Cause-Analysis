@@ -29,8 +29,8 @@ aps-fault-analysis/
 How to Run
 1. Clone this repo
 ```bash
-git clone https://github.com/your-username/aps-fault-analysis.git
-cd aps-fault-analysis
+git clone https://github.com/milandhandhukiya45/Sensor-Fault-Cause-Analysis.git
+cd Sensor-Fault-Cause-Analysis
 ```
 
 2. Install dependencies
