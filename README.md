@@ -54,4 +54,4 @@ python src/gui_app.py
 
 ---
 
-© 2025 Milan Dhandhukiya. Final Year Project – Computer Engineering, 7th Sem
+© 2025 Milan Dhandhukiya. Summer Internship Project – Computer Engineering, 7th Semester
