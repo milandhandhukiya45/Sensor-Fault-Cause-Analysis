@@ -88,8 +88,8 @@ def run_prediction(file_path):
     msg = f"""Total Rows: {len(df)}
 Total Anomalies (Z-Score): {df['is_anomaly'].sum()}
 Predicted Faults: {len(anomalies)}
-✔️ True Positives: {len(true_pos)}
-❌ False Positives: {len(false_pos)}
+True Positives: {len(true_pos)}
+False Positives: {len(false_pos)}
 
 Top Root Cause Sensors:\n{important_features.to_string()}
 """
