@@ -1,3 +1,4 @@
+# TRUE - EDITABLE IN REAMDY.md
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -40,6 +41,7 @@ def run_prediction(file_path):
 
     # Z-score anomaly detection
     z_scores = zscore(df[top_features[:5]])
+    df=df.copy()
     df['is_anomaly'] = (abs(z_scores) > 3).any(axis=1).astype(int)
 
     X = df.drop(columns=['class', 'is_anomaly'])
@@ -73,6 +75,11 @@ def run_prediction(file_path):
 
     importances = pd.Series(model.feature_importances_, index=X.columns)
     important_features = importances.sort_values(ascending=False)[:5]
+    print("\n Top 10 Root Cause Features (Sensor Importance):")
+    print(important_features, "\n\n CAUSE : \n")
+    print("This are the sensors contributing in fault prediction. These are highly related with root cause of sensor faults.") 
+    print("These all above sensors show the highest divergence in behavior between normal and faulty classes. \n")
+    print("Explore below graphs for Root Cause Analysis for Multivariate Sensor Faluts")
 
     for feature in important_features.index:
         plt.figure(figsize=(6, 4))
@@ -85,7 +92,8 @@ def run_prediction(file_path):
         plt.tight_layout()
         plt.show()
 
-    msg = f"""Total Rows: {len(df)}
+        msg = f"""
+Total Rows: {len(df)}
 Total Anomalies (Z-Score): {df['is_anomaly'].sum()}
 Predicted Faults: {len(anomalies)}
 True Positives: {len(true_pos)}
@@ -94,6 +102,13 @@ False Positives: {len(false_pos)}
 Top Root Cause Sensors:\n{important_features.to_string()}
 """
     messagebox.showinfo("Prediction Result", msg)
+
+    print("In all the graphs, the Normal curve / sensors have sharp peak on or near 0, means most normal sensors in vehicle have low reading.")
+    print("In all the graphs, the Faulty curve / sensors have higher values (here up to 6), means faulty sensors in vehicle have higher reading.")
+    print("These Sensors give both, the Normal / Correct values and Faulty / incorrect values.")
+    print("Therefor, all such Sensors are Root Cause of Fault Indicator \n\n ")
+    print(".....................................................................................................................................\n\n")
+
 
 def select_file():
     file_path = filedialog.askopenfilename(filetypes=[("CSV files", "*.csv")])
