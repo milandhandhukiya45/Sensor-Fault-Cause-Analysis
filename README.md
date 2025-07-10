@@ -23,7 +23,7 @@ aps-fault-analysis/
 │   └── trained_model.pkl (optional)
 ├── requirements.txt
 ├── README.md
-└── LICENSE
+
 ```
 
 How to Run
