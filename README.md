@@ -37,7 +37,7 @@ cd Sensor-Fault-Cause-Analysis
 2. Install dependencies
 ```bash
 pip install -r requirements.txt
-(if needed then manually install packages : pip install pandas scikit-learn matplotlib seaborn )
+(if needed, manually install packages : pip install pandas scikit-learn matplotlib seaborn )
 ```
 
 3. Run the GUI app
