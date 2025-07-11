@@ -11,25 +11,28 @@ A full-stack web application with a React (Vite + TypeScript) frontend and a Fla
 
 ---
 
-project-bolt-sb1-ztxjelut/
-├── backend/
-│   ├── app.py
-│   └── requirements.txt
-└── project/
-    ├── src/
-    │   ├── App.tsx
-    │   ├── components/
-    │   │   ├── DataAnalysis.tsx
-    │   │   ├── DataUpload.tsx
-    │   │   ├── ModelResults.tsx
-    │   │   └── RootCauseAnalysis.tsx
-    │   ├── index.css
-    │   ├── main.tsx
-    │   └── types/
-    ├── index.html
-    ├── package.json
-    ├── tailwind.config.js
-    └── ...
+Sensor-Fault-Cause-Analysis/
+├── .gitignore
+├── App.tsx
+├── DataAnalysis.tsx
+├── DataUpload.tsx
+├── ModelResults.tsx
+├── RootCauseAnalysis.tsx
+├── app.py
+├── config.json
+├── eslint.config.js
+├── index.css
+├── index.html
+├── main.tsx
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── requirements.txt
+├── tailwind.config.js
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── README.md
 
 ---
 
