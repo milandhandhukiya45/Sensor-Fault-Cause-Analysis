@@ -1,8 +1,5 @@
-# Project Bolt SB1
+# Project : Root Cause Analysis in Multivariate Sensor Faults in Heavy Vehicles.
 
-A full-stack web application with a React (Vite + TypeScript) frontend and a Flask (Python) backend.
-
----
 
 ## Features
 - Modern React frontend (Vite, TypeScript, Tailwind CSS)
@@ -50,8 +47,8 @@ python -m pip install -r requirements.txt
 ```sh
 python app.py
 ```
-- The backend will run at `http://127.0.0.1:5000`
-- Test endpoint: [http://127.0.0.1:5000/api/hello](http://127.0.0.1:5000/api/hello)
+- The backend will run at http://127.0.0.1:5000/api/hello
+- Test endpoint: http://127.0.0.1:5000/api/hello    OR    http://localhost:5000/api/hello
 
 ---
 
