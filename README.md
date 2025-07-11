@@ -34,6 +34,74 @@ Sensor-Fault-Cause-Analysis/
 └── README.md
 
 ---
+## Machine Learning Model
+This project implements a hybrid pipeline combining **classification** and **statistical anomaly detection** for analyzing multivariate sensor data from heavy vehicles. The system predicts sensor faults and supports root cause identification using a trained machine learning model.
+
+### Objectives
+- Classify whether a fault occurred (`class = pos`) or not (`class = neg`)
+- Analyze which sensor features are most likely contributing to these faults
+- Visualize sensor behavior and anomalies using statistical methods
+
+### Techniques Used
+
+#### 1. Random Forest Classifier
+- A powerful ensemble-based algorithm suitable for noisy, high-dimensional data
+- Handles missing values and feature interactions well
+- Provides **feature importance scores** used for identifying root cause sensors
+
+#### 2. Z-Score Anomaly Detection
+- Applied on selected top features
+- Detects extreme sensor values (outliers) that might indicate anomalies
+- Anomalous rows are flagged with an `is_anomaly` column
+
+### Pipeline Steps
+
+1. **Data Loading & Cleaning**
+   - CSV loaded via GUI (`tkinter.filedialog`)
+   - Missing values imputed using **median strategy**
+   - Columns with >50% missing values dropped
+   - Object-type columns converted to float
+
+2. **Label Transformation**
+   - Categorical labels mapped: `'neg' → 0`, `'pos' → 1`
+
+3. **Feature Selection**
+   - Correlation with the `class` label computed
+   - Top 9 features selected based on absolute correlation values
+
+4. **Anomaly Detection**
+   - Z-score applied to top 5 features
+   - Any row with `|z| > 3` is flagged as anomalous
+
+5. **Model Training**
+   - `RandomForestClassifier` with 100 trees and `class_weight="balanced"`
+   - Trained on 70% of data, tested on 30% using stratified sampling
+   - Predictions converted to class labels using threshold of 0.5
+
+6. **Evaluation & Explanation**
+   - Confusion matrix and performance report displayed
+   - Feature importances extracted to find **most influential sensors**
+   - KDE plots generated to visualize feature distribution for faulty vs. normal
+
+### Output Visualizations
+- **Class Distribution Plot**
+- **Correlation Heatmap of Top Features**
+- **Confusion Matrix Heatmap**
+- **KDE Sensor Distributions** (Faulty vs Normal)
+- **Root Cause Sensors** list with importance ranking
+
+### Libraries Used
+
+- **Data Processing**: `pandas`, `numpy`, `scipy`
+- **Modeling**: `scikit-learn`
+- **Visualization**: `matplotlib`, `seaborn`
+- **UI**: `tkinter` (GUI), `messagebox` (result popups)
+
+### Root Cause Analysis Logic
+
+After model prediction, the top contributing sensors are identified using the `feature_importances_` attribute of the trained Random Forest model. These features are visualized
+using KDE plots to understand how they behave under faulty vs. normal conditions. This insight helps engineers trace the likely root causes of the detected sensor faults.
+
 
 ## Getting Started
 
