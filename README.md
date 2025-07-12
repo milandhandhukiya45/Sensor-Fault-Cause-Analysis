@@ -12,6 +12,51 @@ A comprehensive web application for detecting and analyzing faults in Scania tru
 - **Data Preprocessing**: Automatic handling of missing values and data cleaning
 - **Modern UI**: Responsive design with intuitive user interface
 
+```bash
+Sensor-Fault-Cause-Analysis-main/
+│
+├── .gitignore
+├── ActionButtons.tsx
+├── App.tsx
+├── FeatureImportance.tsx
+├── FileUpload.tsx
+├── README.md
+├── ResultsPanel.tsx
+├── StatusMessage.tsx
+├── VisualizationPanel.tsx
+├── app.py
+├── aps_failure_test_set.csv
+├── config.json
+├── eslint.config.js
+├── generate_sample_data.py
+├── index.css
+├── index.html
+├── main.tsx
+├── package-lock.json
+├── package.json
+├── pip.exe
+├── pip3.13.exe
+├── pip3.exe
+├── postcss.config.js
+├── prompt
+├── python.exe
+├── pythonw.exe
+├── pyvenv.cfg
+├── requirements.txt
+├── script.js
+├── start_backend.bat
+├── start_backend.py
+├── styles.css
+├── tailwind.config.js
+├── test_backend.py
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+├── vite-env.d.ts
+└── vite.config.ts
+```
+
+```bash
 ## System Architecture
 
 ### Backend (Python Flask)
@@ -25,40 +70,46 @@ A comprehensive web application for detecting and analyzing faults in Scania tru
 - **File Upload**: Drag-and-drop CSV file upload with validation
 - **Responsive Design**: Modern UI with Tailwind CSS styling
 - **Real Data Integration**: Fetches and displays actual data from backend APIs
+```
 
+```bash
 ## Quick Start
 
 ### 1. Start the Backend Server
 
-```bash
+
 cd Sensor-Fault-Cause-Analysis-main
 python -m pip install -r requirements.txt
 python -m pip install pandas
 python -m pip install pandas flask flask-cors scikit-learn matplotlib seaborn
 python app.py
-```
+
 
 The backend will start on `http://localhost:5000`
-
+```
+```bash
 ### 2. Open the Frontend
 
 Simply open `index.html` in your web browser, or serve it using a local server:
 
-```bash
+
 # Using Python
 python -m http.server 8000
 
-```
 
 => Then visit `http://localhost:8000`
+```
 
+```bash
 ### 3. Test the System
 
 1. **Upload Data**: Drag and drop a CSV file or click browse to select one
 2. **View Visualizations**: The charts will automatically update with real data
 3. **Run Analysis**: Click the analysis buttons to perform anomaly detection, classification, or root cause analysis
 4. **View Results**: Check the results tab for detailed analysis outcomes
+```
 
+```bash
 ## Data Format
 
 The system expects CSV files with the following format:
@@ -68,11 +119,13 @@ aa_000,ab_001,ac_002,...,class
 2.1,2.3,1.9,...,Normal
 2.5,2.7,2.1,...,Fault Class 1
 ...
-```
+
 
 - **Sensor Columns**: Numeric sensor readings (e.g., aa_000, ab_001, etc.)
 - **Class Column**: Target variable indicating fault status (Normal, Fault Class 1, etc.)
+```
 
+```bash
 ## API Endpoints
 
 ### Core Endpoints
@@ -86,7 +139,8 @@ aa_000,ab_001,ac_002,...,class
 - `GET /api/visualization-data` - Get data for charts
 - `GET /api/sensor-time-series` - Get time series data
 - `GET /api/data-stats` - Get dataset statistics
-
+```
+```bash
 ## Data Preprocessing
 
 The system automatically handles:
@@ -94,7 +148,8 @@ The system automatically handles:
 - Non-numeric data (converted or dropped)
 - Data type validation
 - Outlier detection
-
+```
+```bash
 ## Machine Learning Models
 
 ### Anomaly Detection
@@ -112,8 +167,9 @@ The system automatically handles:
 - **Method**: Feature importance from Random Forest
 - **Output**: Ranked list of critical sensors
 - **Interpretation**: Percentage importance for each sensor
+```
 
-
+```bash
 ## Sample Data Generation
 
 Generate sample data for testing:
@@ -124,7 +180,8 @@ python generate_sample_data.py
 ```
 
 This creates a CSV file with realistic sensor data and fault patterns.
-
+```
+```bash
 ## Troubleshooting
 
 ### Common Issues
@@ -162,15 +219,9 @@ This creates a CSV file with realistic sensor data and fault patterns.
 3. Make your changes
 4. Test thoroughly
 5. Submit a pull request
+```bash
 
 ## License
 
 This project is licensed under the MIT License.
 
-## Support
-
-For issues and questions:
-1. Check the troubleshooting section
-2. Review the API documentation
-3. Test with sample data
-4. Open an issue on GitHub 
