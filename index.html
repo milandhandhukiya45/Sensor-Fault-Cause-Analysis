@@ -1,0 +1,196 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Root Cause Analysis in Multivariate Sensor Faults in Heavy Vehicles.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                    </svg>
+                    <div class="header-text">
+                        <h1>Root Cause Analysis in Multivariate Sensor Faults in Heavy Vehicles.</h1>
+                        <p>Air Sensor Failure &  Anomaly Detection & Classification</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Status Message -->
+            <div id="statusMessage" class="status-message hidden">
+                <div class="status-content">
+                    <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="m9 12 2 2 4-4"/>
+                    </svg>
+                    <span class="status-text">Ready to upload file</span>
+                    <button class="status-close" onclick="closeStatus()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- File Upload -->
+            <div class="card">
+                <h2>Upload Dataset</h2>
+                <div id="dropZone" class="drop-zone">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7,10 12,15 17,10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    <p class="upload-text">
+                        Drag and drop your CSV file here, or 
+                        <button class="browse-btn" onclick="document.getElementById('fileInput').click()">browse</button>
+                    </p>
+                    <p class="upload-subtext">CSV files only</p>
+                    <input type="file" id="fileInput" accept=".csv" style="display: none;">
+                </div>
+                <div id="fileInfo" class="file-info hidden">
+                    <svg class="file-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                    </svg>
+                    <div class="file-details">
+                        <p class="file-name"></p>
+                        <p class="file-size"></p>
+                    </div>
+                    <button class="remove-file" onclick="removeFile()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="card">
+                <h2>Analysis Actions</h2>
+                <div class="action-buttons">
+                    <button id="detectBtn" class="action-btn" onclick="detectAnomalies()" disabled>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                        <span>Detect Anomalies</span>
+                    </button>
+                    <button id="classifyBtn" class="action-btn" onclick="classifyFaults()" disabled>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                            <path d="M12 9v4"/>
+                            <path d="m12 17 .01 0"/>
+                        </svg>
+                        <span>Classify Faults</span>
+                    </button>
+                    <button id="rootCauseBtn" class="action-btn" onclick="identifyRootCause()" disabled>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                        <span>Identify Root Cause</span>
+                    </button>
+                </div>
+                <p id="actionHint" class="action-hint">Please upload a CSV file to enable analysis actions</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('charts', event)">Data Visualizations</button>
+                <button class="tab-btn" onclick="switchTab('importance', event)">Feature Importance</button>
+                <button class="tab-btn" onclick="switchTab('results', event)">Analysis Results</button>
+            </div>
+
+            <!-- Charts Tab -->
+            <div id="chartsTab" class="tab-content active">
+                <div class="charts-grid">
+                    <div class="card">
+                        <h3>Class Distribution</h3>
+                        <canvas id="classChart"></canvas>
+                    </div>
+                    <div class="card">
+                        <h3>Feature Correlation</h3>
+                        <canvas id="correlationChart"></canvas>
+                    </div>
+                    <div class="card chart-wide">
+                        <h3>Sensor Behavior Over Time</h3>
+                        <canvas id="sensorChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Importance Tab -->
+            <div id="importanceTab" class="tab-content">
+                <div class="card">
+                    <div class="importance-header">
+                        <svg class="importance-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                        </svg>
+                        <h3>Feature Importance (Root Cause Sensors)</h3>
+                    </div>
+                    <div id="importanceAlert" class="importance-alert hidden">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                        <p>Analysis completed. Top sensors ranked by fault prediction importance.</p>
+                    </div>
+                    <div id="featureList" class="feature-list"></div>
+                    <div class="importance-guide">
+                        <h4>Interpretation Guide</h4>
+                        <div class="guide-grid">
+                            <div class="guide-item">
+                                <span class="guide-color critical"></span>
+                                <span>Critical (>12%): Immediate attention required</span>
+                            </div>
+                            <div class="guide-item">
+                                <span class="guide-color high"></span>
+                                <span>High (8-12%): Monitor closely</span>
+                            </div>
+                            <div class="guide-item">
+                                <span class="guide-color medium"></span>
+                                <span>Medium (5-8%): Regular maintenance</span>
+                            </div>
+                            <div class="guide-item">
+                                <span class="guide-color low"></span>
+                                <span>Low (&lt;5%): Normal operation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Tab -->
+            <div id="resultsTab" class="tab-content">
+                <div id="noResults" class="no-results">
+                    <svg class="no-results-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="20" x2="18" y2="10"/>
+                        <line x1="12" y1="20" x2="12" y2="4"/>
+                        <line x1="6" y1="20" x2="6" y2="14"/>
+                    </svg>
+                    <h3>No Analysis Results</h3>
+                    <p>Run an analysis to see results here. Upload a CSV file and click one of the analysis buttons.</p>
+                </div>
+                <div id="resultsContent" class="hidden"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
