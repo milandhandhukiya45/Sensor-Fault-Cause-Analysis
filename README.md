@@ -31,8 +31,10 @@ A comprehensive web application for detecting and analyzing faults in Scania tru
 ### 1. Start the Backend Server
 
 ```bash
-cd backend
-pip install -r requirements.txt
+cd Sensor-Fault-Cause-Analysis-main
+python -m pip install -r requirements.txt
+python -m pip install pandas
+python -m pip install pandas flask flask-cors scikit-learn matplotlib seaborn
 python app.py
 ```
 
@@ -46,14 +48,9 @@ Simply open `index.html` in your web browser, or serve it using a local server:
 # Using Python
 python -m http.server 8000
 
-# Using Node.js
-npx serve .
-
-# Using PHP
-php -S localhost:8000
 ```
 
-Then visit `http://localhost:8000`
+=> Then visit `http://localhost:8000`
 
 ### 3. Test the System
 
@@ -116,16 +113,6 @@ The system automatically handles:
 - **Output**: Ranked list of critical sensors
 - **Interpretation**: Percentage importance for each sensor
 
-## Testing
-
-Run the backend tests:
-
-```bash
-cd backend
-python test_backend.py
-```
-
-This will test all API endpoints with sample data.
 
 ## Sample Data Generation
 
